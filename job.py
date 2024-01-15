@@ -14,5 +14,17 @@ soup = BeautifulSoup(html_text, 'lxml')
 
 job = soup.find('li', class_= 'clearfix job-bx wht-shd-bx')
 # for job in jobs:
-company = job.find('h3', class_='joblist-comp-name').text.replace(' T', '')
-print(company)
+position = job.find('h2').text.replace(' ', '')
+company_name = job.find('h3', class_='joblist-comp-name').text.replace(' ', '')
+# print(company_name)
+
+skills = job.find('span', 'srp-skills').text.replace(' ','')
+# print(skills)
+
+print(f'''
+Position: {position}
+
+Compant Name: {company_name}
+
+Required Skills: {skills}
+''')
