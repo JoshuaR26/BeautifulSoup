@@ -12,19 +12,23 @@ html_text = html_get_confirmation.text
 soup = BeautifulSoup(html_text, 'lxml')
 # print(soup)
 
-job = soup.find('li', class_= 'clearfix job-bx wht-shd-bx')
-# for job in jobs:
-position = job.find('h2').text.replace(' ', '')
-company_name = job.find('h3', class_='joblist-comp-name').text.replace(' ', '')
-# print(company_name)
+jobs = soup.find_all('li', class_= 'clearfix job-bx wht-shd-bx')
+for job in jobs:
+    published_date = job.find('span', 'sim-posted').span.text
+    if 'few' in published_date:
+        position = job.find('h2').text.replace(' ', '')
+        company_name = job.find('h3', class_='joblist-comp-name').text.replace(' ', '')
+        # print(company_name)
 
-skills = job.find('span', 'srp-skills').text.replace(' ','')
-# print(skills)
+        skills = job.find('span', 'srp-skills').text.replace(' ','')
+        # print(skills)
 
-print(f'''
+        print(f'''
+-----------------------------------------------------------
+              
 Position: {position}
-
 Compant Name: {company_name}
-
 Required Skills: {skills}
-''')
+Posted: {published_date}
+------------------------------------------------------------
+    ''')
