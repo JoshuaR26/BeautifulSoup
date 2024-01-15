@@ -1,2 +1,2 @@
-    # for tag in tags:
-    #     print(tag.text)
+for job in jobs:
+#     print(job.h2.text)
